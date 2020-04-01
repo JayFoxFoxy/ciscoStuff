@@ -1,0 +1,18 @@
+Switch(config)#hostname CustomerSwitch
+
+CustomerSwitch(config)#enable password cisco
+CustomerSwitch(config)#enable password cisco123
+
+CustomerSwitch(config)#line console 0
+CustomerSwitch(config-line)#password cisco
+CustomerSwitch(config-line)#login
+
+CustomerSwitch(config)#line vty 0 15
+CustomerSwitch(config-line)#password cisco
+CustomerSwitch(config-line)#login
+
+CustomerSwitch(config)#interface vlan 1
+CustomerSwitch(config-if)#ip address 192.168.1.5 255.255.255.0
+CustomerSwitch(config-if)#no shutdown 
+
+CustomerSwitch(config)#ip default-gateway 192.168.1.1

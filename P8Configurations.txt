@@ -1,0 +1,63 @@
+PAGE 16
+
+
+Switch(config)#hostname S1
+S1(config)#interface fa0/1
+S1(config)#switchport mode access
+
+S1(config)#interface vlan 1
+S1(config)#ip address 172.17.99.11 255.255.255.0
+S1(config)#no shutdown
+
+S1(config)#clock timezone UTC 1
+
+S1(config)#line console 0
+S1(config-line)#password cisco
+S1(config-line)#login
+
+S1(config)#line vty 0 4
+S1(config-line)#password cisco
+S1(config-line)#login
+
+S1(config)#enable password class
+
+S1(config)#enable secret class
+
+S1(config)#service password-encryption 
+
+S1(config)#banner motd #Authorized Access Only#
+
+S1(config)#interface f0/18
+S1(config-if)#switchport mode access
+S1(config-if)#switchport port-security
+S1(config-if)#switchport port-security maximum 1
+S1(config-if)#switchport port-security mac-address sticky
+S1(config-if)#switchport port-security violation shutdown
+
+S1#show port-security interface f0/18 --> answert to b.
+
+S1(config)#interface range f0/2-17
+S1(config-if-range)#shutdown
+
+S1(config)#interface range f0/19-23
+S1(config-if-range)#shutdown
+
+S1(config)#interface range g0/1-2
+S1(config-if-range)#shutdown
+--------------------------------------------------------
+
+Router(config)#hostname R1
+
+R1(config)#enable password class
+R1(config)#enable secret class
+
+R1(config)#line console 0
+R1(config-line)#password cisco
+R1(config-line)#login
+
+R1(config)#line vty 0 4
+R1(config-line)#password cisco
+R1(config-line)#login
+
+R1(config)#service password-encryption 
+R1(config)#banner motd $Authorized Access Only$

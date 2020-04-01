@@ -1,0 +1,20 @@
+Router#configure terminal 
+Router(config)#hostname CostumerRouter
+
+CostumerRouter(config)#enable password cisco
+CostumerRouter(config)#enable secret cisco123
+
+CostumerRouter(config)#line console 0
+CostumerRouter(config-line)#password cisco123
+CostumerRouter(config-line)#login
+
+CostumerRouter(config)#line vty 0 4
+CostumerRouter(config-line)#password cisco123
+CostumerRouter(config-line)#login
+
+CostumerRouter(config)#service password-encryption 
+CostumerRouter(config)#banner motd $Authorized Access Only!$
+
+CostumerRouter(config)#no ip domain-lookup --> Cancel DNS
+
+CostumerRouter#copy run start
